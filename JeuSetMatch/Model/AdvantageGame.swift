@@ -13,12 +13,16 @@ class AdvantageGame: Game {
 
     private let advantageWins = 2
 
+    fileprivate func resetScore() {
+        scores[.one] = 0
+        scores[.two] = 0
+    }
+
     override func incrementScore(forPlayer player: Player) {
         scores[player]! += 1
         if let score = scores[player] {
             if scores[.one]! == scores[.two]! {
-                scores[.one] = 0
-                scores[.two] = 0
+                resetScore()
             } else if score == advantageWins {
                 end(withWinner: player)
             }
